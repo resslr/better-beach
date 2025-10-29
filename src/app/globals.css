@@ -1,26 +1,155 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+/* theme customized/implemented through tweakcn */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Sky blue background */
+  --background: oklch(0.9808 0.0119 79.7852);
+  --foreground: oklch(0.285 0 0);
+
+  /* Sandy card colors */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.285 0 0);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.285 0 0);
+
+  /* Ocean blue primary */
+  --primary: oklch(0.504 0.0839 194.8212);
+  --primary-foreground: oklch(0.9791 0 0);
+
+  /* Warm sand secondary */
+  --secondary: oklch(0.7878 0.1172 61.4579);
+  --secondary-foreground: oklch(0.285 0 0);
+
+  /* Soft sky muted */
+  --muted: oklch(0.9427 0.0189 67.5952);
+  --muted-foreground: oklch(0.5348 0 0);
+
+  /* Turquoise accent */
+  --accent: oklch(0.8808 0.0221 211.0501);
+  --accent-foreground: oklch(0.504 0.0839 194.8212);
+
+  /* Coral destructive */
+  --destructive: oklch(0.5707 0.2087 21.1426);
+  --destructive-foreground: oklch(1 0 0);
+
+  /* Soft borders */
+  --border: oklch(0.8748 0.0277 78.1736);
+  --input: oklch(0.9808 0.0119 79.7852);
+  --ring: oklch(0.504 0.0839 194.8212);
+
+  --chart-1: oklch(0.504 0.0839 194.8212);
+  --chart-2: oklch(0.7878 0.1172 61.4579);
+  --chart-3: oklch(0.6885 0.1026 190.1262);
+  --chart-4: oklch(0.8803 0.1348 86.0616);
+  --chart-5: oklch(0.7146 0.0795 68.5434);
+
+  --radius: 0.75rem;
+
+  --sidebar: oklch(0.504 0.0839 194.8212);
+  --sidebar-foreground: oklch(0.9808 0.0119 79.7852);
+  --sidebar-primary: oklch(1 0 0);
+  --sidebar-primary-foreground: oklch(0.504 0.0839 194.8212);
+  --sidebar-accent: oklch(0.6885 0.1026 190.1262);
+  --sidebar-accent-foreground: oklch(1 0 0);
+  --sidebar-border: oklch(0.5794 0.0929 194.8934);
+  --sidebar-ring: oklch(1 0 0);
+  --font-sans: "Outfit", sans-serif;
+  --font-serif: "Lora", serif;
+  --font-mono: "Fira Code", monospace;
+  --shadow-color: #000000;
+  --shadow-opacity: 0.1;
+  --shadow-blur: 1rem;
+  --shadow-spread: 0.25rem;
+  --shadow-offset-x: 0rem;
+  --shadow-offset-y: 0.5rem;
+  --letter-spacing: 0em;
+  --spacing: 0.25rem;
+  --shadow-2xs: 0rem 0.5rem 1rem 0.25rem hsl(0 0% 0% / 0.05);
+  --shadow-xs: 0rem 0.5rem 1rem 0.25rem hsl(0 0% 0% / 0.05);
+  --shadow-sm: 0rem 0.5rem 1rem 0.25rem hsl(0 0% 0% / 0.1),
+    0rem 1px 2px -0.75px hsl(0 0% 0% / 0.1);
+  --shadow: 0rem 0.5rem 1rem 0.25rem hsl(0 0% 0% / 0.1),
+    0rem 1px 2px -0.75px hsl(0 0% 0% / 0.1);
+  --shadow-md: 0rem 0.5rem 1rem 0.25rem hsl(0 0% 0% / 0.1),
+    0rem 2px 4px -0.75px hsl(0 0% 0% / 0.1);
+  --shadow-lg: 0rem 0.5rem 1rem 0.25rem hsl(0 0% 0% / 0.1),
+    0rem 4px 6px -0.75px hsl(0 0% 0% / 0.1);
+  --shadow-xl: 0rem 0.5rem 1rem 0.25rem hsl(0 0% 0% / 0.1),
+    0rem 8px 10px -0.75px hsl(0 0% 0% / 0.1);
+  --shadow-2xl: 0rem 0.5rem 1rem 0.25rem hsl(0 0% 0% / 0.25);
+  --tracking-normal: 0em;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+/* Mobile optimizations */
+@media (max-width: 768px) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Increase tap targets for mobile */
+    --min-touch-target: 44px;
+  }
+
+  /* Prevent text size adjustments on mobile */
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  /* Smooth scrolling for mobile */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Improve touch interactions */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Better readability on mobile */
+  body {
+    font-size: 16px; /* Prevents zoom on iOS */
   }
 }
 
+/* PWA specific styles */
+@media (display-mode: standalone) {
+  body {
+    /* Additional padding for status bar on iOS */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Accessible focus styles */
+*:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
+
+/* Prevent horizontal scroll on mobile */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 210 40% 98%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 212.7 26.8% 83.9%;
 }
