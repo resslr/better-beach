@@ -37,7 +37,7 @@ export function ScanPage() {
       (m) =>
         m.name.toLowerCase() === lowerIng ||
         m.id === lowerIng ||
-        m.aliases?.some((alias) => alias.toLowerCase() === lowerIng)
+        m.aliases?.some((alias) => alias.toLowerCase() === lowerIng),
     );
     return material?.id || null;
   };
@@ -53,10 +53,10 @@ export function ScanPage() {
             (s) =>
               s.length > 1 &&
               !/^(ingredients|inactive ingredients|active ingredients)\b/i.test(
-                s
-              )
-          )
-      )
+                s,
+              ),
+          ),
+      ),
     ).slice(0, 400);
   };
 
@@ -67,7 +67,7 @@ export function ScanPage() {
     for (const ing of bannedIngredients) {
       const pattern = new RegExp(
         `\\b${escapeRegExp(ing).replace(/[\s-]+/g, "[\\s-]*")}\\b`,
-        "i"
+        "i",
       );
       if (pattern.test(token)) return true;
     }
@@ -87,7 +87,7 @@ export function ScanPage() {
   };
 
   const analyzeTextDetailed = (
-    text: string
+    text: string,
   ): {
     status: AnalysisStatus;
     harmful: string[];
@@ -113,24 +113,24 @@ export function ScanPage() {
     const freePhrases = (alias: string) => [
       new RegExp(
         `\\b${alias.replace(/[-\s]+/g, "[-\\s]*")}[-\\s]*free\\b`,
-        "i"
+        "i",
       ),
       new RegExp(
         `\\bfree\\s+of\\s+${alias.replace(/[-\s]+/g, "[-\\s]*")}\\b`,
-        "i"
+        "i",
       ),
       new RegExp(`\\bno\\s+${alias.replace(/[-\s]+/g, "[-\\s]*")}\\b`, "i"),
       new RegExp(
         `\\bwithout\\s+${alias.replace(/[-\s]+/g, "[-\\s]*")}\\b`,
-        "i"
+        "i",
       ),
       new RegExp(`\\b0%\\s*${alias.replace(/[-\s]+/g, "[-\\s]*")}\\b`, "i"),
       new RegExp(
         `\\bdoes\\s+not\\s+contain\\s+${alias.replace(
           /[-\s]+/g,
-          "[-\\s]*"
+          "[-\\s]*",
         )}\\b`,
-        "i"
+        "i",
       ),
     ];
 
@@ -195,7 +195,7 @@ export function ScanPage() {
     () => () => {
       if (imagePreview) URL.revokeObjectURL(imagePreview);
     },
-    [imagePreview]
+    [imagePreview],
   );
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {

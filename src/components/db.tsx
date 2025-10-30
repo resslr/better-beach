@@ -20,8 +20,8 @@ export function DatabasePage() {
     (material) =>
       material.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       material.aliases?.some((alias) =>
-        alias.toLowerCase().includes(searchTerm.toLowerCase())
-      )
+        alias.toLowerCase().includes(searchTerm.toLowerCase()),
+      ),
   );
 
   return (
