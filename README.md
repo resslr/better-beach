@@ -1,36 +1,126 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
+  <h1>BetterBeach 🪸</h1>
+  
+  <p>
+    An online tool to check if the ingredients of your sunscreen are safe for coral reefs.
+  </p>
 
+  <!-- Badges -->
+<p>
+  <a href="">
+    <img src="https://img.shields.io/github/last-commit/resslr/better-beach" alt="last update" />
+  </a>
+  <a href="https://github.com/resslr/better-beach">
+    <img src="https://img.shields.io/github/stars/resslr/better-beaches" alt="stars" />
+  </a>
+  <a href="https://github.com/resslr/better-beaches/issues/">
+    <img src="https://img.shields.io/github/issues/resslr/better-beaches" alt="open issues" />
+  </a>
+  <a href="https://github.com/resslr/better-beaches/blob/master/LICENSE">
+    <img src="https://img.shields.io/github/license/resslr/better-beaches" alt="license" />
+  </a>
+</p>
+
+<div align="center"> 
+  <kbd><img src="./preview.png" alt="screenshot" /></kbd>
+</div>
+   
+<h4>
+    <a href="https://betterbeach.app">View Live</a>
+  <span> · </span>
+    <a href="https://github.com/resslr/better-beaches/issues/">Report Bug</a>
+  <span> · </span>
+    <a href="https://github.com/resslr/better-beaches/issues/">Request Feature</a>
+  </h4>
+</div>
+
+<br />
+
+<!-- Table of Contents -->
+# Table of Contents
+
+- [About the Project](#about-the-project)
+  * [Features](#features)
+- [Getting Started](#getting-started)
+  * [Run Locally](#run-locally)
+- [Contributing](#contributing)
+  * [Code of Conduct](#code-of-conduct)
+- [License](#license)
+- [Contact](#contact)
+  
+
+<!-- About the Project -->
+## About the Project
+This project was created as a tool to be able to help prevent damage to the coral reefs by inputting harsh chemicals into the sea. Many people unknowingly harm coral reefs everyday by using sunscreen that contains Oxybenzone, Octinoxate, and/or Octisalate to name a few, these chemicals harm the development of coral reefs and usually lead to bleaching, which eventually leads to the death of that ecosystem.
+
+<!-- Features -->
+### Features
+
+- Sunscreen Ingredient Scaning
+- Harmful Chemical Database with Chemical Composition and Explanations
+- Buy Reef-Safe Sunscreen Near You
+
+<!-- Getting Started -->
 ## Getting Started
 
-First, run the development server:
+<!-- Prerequisites -->
+### Prerequisites
+
+This project uses [PNPM](https://pnpm.io/) as package manager, requiring both npm and nodejs. I personally installed pnpm through [corepack](https://github.com/nodejs/corepack) and recommend you to do the same in terms of compatability.
+
+
+<!-- Run Locally -->
+### Run Locally
+
+Clone the project
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+  git clone https://github.com/resslr/better-beach.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Go to the project directory
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+  cd better-beach
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Install dependencies
 
-## Learn More
+```bash
+  pnpm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+Build the project
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+  pnpm run build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Start the server
 
-## Deploy on Vercel
+```bash
+  pnpm run start
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<!-- Contributing -->
+## Contributing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Contributions are always welcome, and in fact if you notice any missing harmful ingredients you want to point out, I highly recommend you open an [issue](https://github.com/resslr/better-beaches/issues/) to benefit others who may use this tool. Please read the CONTRI
+
+
+<!-- Code of Conduct -->
+### Code of Conduct
+
+Please read the [Code of Conduct](https://github.com/Louis3797/awesome-readme-template/blob/master/CODE_OF_CONDUCT.md)
+
+
+<!-- License -->
+## License
+
+Distributed under the MIT License. See [LICENSE](https://github.com/resslr/better-beach/blob/master/LICENSE) for more information.
+
+
+<!-- Contact -->
+## Contact
+
+If you need to contact me for any reason revolving around this respository please send me an email at [git@betterbeach.app](mailto:git@betterbeach.app). Thank you!
