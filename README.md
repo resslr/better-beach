@@ -11,13 +11,13 @@
     <img src="https://img.shields.io/github/last-commit/resslr/better-beach" alt="last update" />
   </a>
   <a href="https://github.com/resslr/better-beach">
-    <img src="https://img.shields.io/github/stars/resslr/better-beaches" alt="stars" />
+    <img src="https://img.shields.io/github/stars/resslr/better-beach" alt="stars" />
   </a>
   <a href="https://github.com/resslr/better-beaches/issues/">
-    <img src="https://img.shields.io/github/issues/resslr/better-beaches" alt="open issues" />
+    <img src="https://img.shields.io/github/issues/resslr/better-beach" alt="open issues" />
   </a>
   <a href="https://github.com/resslr/better-beaches/blob/master/LICENSE">
-    <img src="https://img.shields.io/github/license/resslr/better-beaches" alt="license" />
+    <img src="https://img.shields.io/github/license/resslr/better-beach" alt="license" />
   </a>
 </p>
 
@@ -28,9 +28,9 @@
 <h4>
     <a href="https://betterbeach.app">View Live</a>
   <span> · </span>
-    <a href="https://github.com/resslr/better-beaches/issues/">Report Bug</a>
+    <a href="https://github.com/resslr/better-beach/issues/">Report Bug</a>
   <span> · </span>
-    <a href="https://github.com/resslr/better-beaches/issues/">Request Feature</a>
+    <a href="https://github.com/resslr/better-beach/issues/">Request Feature</a>
   </h4>
 </div>
 
@@ -105,7 +105,7 @@ Start the server
 <!-- Contributing -->
 ## Contributing
 
-Contributions are always welcome, and in fact if you notice any missing harmful ingredients you want to point out, I highly recommend you open an [issue](https://github.com/resslr/better-beaches/issues/) to benefit others who may use this tool. Please read the CONTRI
+Contributions are always welcome, and in fact if you notice any missing harmful ingredients you want to point out, I highly recommend you open an [issue](https://github.com/resslr/better-beach/issues/) to benefit others who may use this tool. Please read the CONTRI
 
 
 <!-- Code of Conduct -->
