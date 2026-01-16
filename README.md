@@ -120,6 +120,10 @@ Please read the [Code of Conduct](https://github.com/Louis3797/awesome-readme-te
 Distributed under the MIT License. See [LICENSE](https://github.com/resslr/better-beach/blob/master/LICENSE) for more information.
 
 
+<!-- C.A.C. FL27 -->
+## Congressional App Challenge
+This app was submitted to compete at the Florida Congressional App Challenge at the 27th Congressional District, I placed third for this app and will continue to work on it, including the changes for the proposed V2.
+
 <!-- Contact -->
 ## Contact
 
