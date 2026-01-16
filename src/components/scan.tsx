@@ -334,7 +334,7 @@ export function ScanPage() {
 
         <Button
           size="lg"
-          className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-linear-to-r from-amber-700 via-amber-400 to-amber-500 text-base font-semibold text-white shadow-lg ring-1 ring-sky-300/40 transition-all duration-300 hover:from-amber-400 hover:via-sky-500 hover:to-emerald-600 hover:shadow-xl hover:scale-[1.01] active:scale-[0.99] sm:h-14 sm:text-lg md:w-auto md:px-12 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100 disabled:hover:from-amber-700 disabled:hover:via-amber-400 disabled:hover:to-amber-500"
+          className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-linear-to-r from-amber-700 via-amber-400 to-amber-500 text-base font-semibold text-white shadow-[0_8px_16px_rgba(0,0,0,0.3),0_4px_8px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.2)] ring-1 ring-sky-300/40 transition-all duration-300 hover:shadow-[0_12px_24px_rgba(0,0,0,0.4),0_6px_12px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.3)] hover:from-amber-400 hover:via-sky-500 hover:to-emerald-600 hover:shadow-xl hover:scale-[1.01] active:shadow-[0_2px_4px_rgba(0,0,0,0.2),inset_0_2px_4px_rgba(0,0,0,0.1)] active:scale-[0.98] sm:h-14 sm:text-lg md:w-auto md:px-12 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100 disabled:hover:from-amber-700 disabled:hover:via-amber-400 disabled:hover:to-amber-500"
           onClick={handleAnalyze}
           disabled={isLoading || !imageFile}
           aria-label={isLoading ? "Analyzing photo" : "Analyze photo"}
