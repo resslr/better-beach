@@ -1,4 +1,4 @@
-import { Github } from "lucide-react";
+import { CodeBracketIcon as Github } from "@heroicons/react/24/outline";
 
 export function Footer() {
   return (

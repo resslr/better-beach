@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Search } from "lucide-react";
+import { MagnifyingGlassIcon as Search, ChevronRightIcon as ChevronRight } from "@heroicons/react/24/outline";
 import { Input } from "@/components/ui/input";
 import {
   Card,
@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/card";
 import { harmfulMaterials } from "@/lib/harmful-materials";
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
 
 export function DatabasePage() {
   const [searchTerm, setSearchTerm] = useState("");

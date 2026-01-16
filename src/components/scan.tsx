@@ -3,7 +3,7 @@
 import { createWorker, OEM } from "tesseract.js";
 import type { Worker as TesseractWorker } from "tesseract.js";
 import Image from "next/image";
-import { Camera, Upload } from "lucide-react";
+import { CameraIcon as Camera, ArrowUpTrayIcon as Upload, CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useEffect, useState } from "react";
@@ -322,7 +322,8 @@ export function ScanPage() {
 
         {!imageFile && (
           <p className="px-2 text-xs text-muted-foreground sm:text-sm">
-            📸 Please upload or take a photo of your sunscreen ingredients to
+            <Camera className="inline h-4 w-4 mr-1" />
+            Please upload or take a photo of your sunscreen ingredients to
             analyze{" "}
             <span className="mt-1 block">
               <strong>TIP:</strong> Make sure the ingredients list is clear and
@@ -351,7 +352,8 @@ export function ScanPage() {
                   role="status"
                   aria-live="polite"
                 >
-                  ✅ Looks Reef-Safe
+                  <CheckCircleIcon className="inline h-5 w-5 mr-2" />
+                  Looks Reef-Safe
                 </p>
                 <div className="mt-2 text-xs text-foreground sm:text-sm">
                   <ul className="list-disc space-y-1 pl-5">
@@ -383,7 +385,8 @@ export function ScanPage() {
                   role="alert"
                   aria-live="assertive"
                 >
-                  ❌ Harmful to Reefs
+                  <XCircleIcon className="inline h-5 w-5 mr-2" />
+                  Harmful to Reefs
                 </p>
                 <div className="mt-2 text-xs text-foreground sm:text-sm">
                   <ul className="list-disc space-y-1 pl-5">

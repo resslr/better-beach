@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Camera, Database, BookOpen, Heart } from "lucide-react";
+import { CameraIcon as Camera, CircleStackIcon as Database, BookOpenIcon as BookOpen, HeartIcon as Heart } from "@heroicons/react/24/outline";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";

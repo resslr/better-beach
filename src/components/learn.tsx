@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ExternalLink, ShoppingBag, AlertTriangle } from "lucide-react";
+import { ArrowTopRightOnSquareIcon as ExternalLink, ShoppingBagIcon as ShoppingBag, ExclamationTriangleIcon as AlertTriangle } from "@heroicons/react/24/outline";
 
 export function LearnPage() {
   return (

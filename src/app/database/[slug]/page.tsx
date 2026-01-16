@@ -1,7 +1,7 @@
 import { harmfulMaterials } from "@/lib/harmful-materials";
 import { notFound } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { AlertTriangle } from "lucide-react";
+import { ExclamationTriangleIcon as AlertTriangle } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
