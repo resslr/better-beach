@@ -1,7 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { CameraIcon as Camera, ArrowUpTrayIcon as Upload, CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
+import {
+  CameraIcon as Camera,
+  ArrowUpTrayIcon as Upload,
+  CheckCircleIcon,
+  XCircleIcon,
+} from "@heroicons/react/24/outline";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useEffect, useState, useRef } from "react";
@@ -272,7 +277,6 @@ export function ScanPage() {
 
       await worker.terminate();
       ocrWorkerRef.current = null;
-
     } catch (error) {
       console.error("OCR failed", error);
       setAnalysisResult(null);
