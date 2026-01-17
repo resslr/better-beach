@@ -7,12 +7,14 @@ import {
   CircleStackIcon as Database,
   BookOpenIcon as BookOpen,
   HeartIcon as Heart,
+  SunIcon,
 } from "@heroicons/react/24/outline";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
 const navItems = [
+  { href: "/uv-checker", label: "UV Checker", icon: SunIcon },
   { href: "/", label: "Scan", icon: Camera },
   { href: "/database", label: "Database", icon: Database },
   { href: "/learn", label: "Learn", icon: BookOpen },
