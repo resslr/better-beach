@@ -1,12 +1,10 @@
 "use client";
 
-import { createWorker, OEM } from "tesseract.js";
-import type { Worker as TesseractWorker } from "tesseract.js";
 import Image from "next/image";
 import { CameraIcon as Camera, ArrowUpTrayIcon as Upload, CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import {
   harmfulMaterials,
@@ -28,6 +26,8 @@ export function ScanPage() {
     negated: string[];
     claims: string[];
   } | null>(null);
+
+  const ocrWorkerRef = useRef<any>(null);
 
   const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
@@ -191,12 +191,17 @@ export function ScanPage() {
     });
   };
 
-  useEffect(
-    () => () => {
-      if (imagePreview) URL.revokeObjectURL(imagePreview);
-    },
-    [imagePreview],
-  );
+  useEffect(() => {
+    return () => {
+      if (imagePreview) {
+        URL.revokeObjectURL(imagePreview);
+      }
+      if (ocrWorkerRef.current) {
+        ocrWorkerRef.current.terminate().catch(console.error);
+        ocrWorkerRef.current = null;
+      }
+    };
+  }, [imagePreview]);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -238,11 +243,19 @@ export function ScanPage() {
       return null;
     });
 
-    let worker: TesseractWorker | null = null;
     try {
-      worker = await createWorker("eng", OEM.LSTM_ONLY, {
+      const { createWorker, OEM } = await import("tesseract.js");
+
+      if (ocrWorkerRef.current) {
+        await ocrWorkerRef.current.terminate();
+        ocrWorkerRef.current = null;
+      }
+
+      const worker = await createWorker("eng", OEM.LSTM_ONLY, {
         logger: (m: unknown) => console.log(m),
       });
+
+      ocrWorkerRef.current = worker;
 
       const {
         data: { text },
@@ -256,12 +269,15 @@ export function ScanPage() {
         negated: analysis.negated,
         claims: analysis.claims,
       });
+
+      await worker.terminate();
+      ocrWorkerRef.current = null;
+
     } catch (error) {
       console.error("OCR failed", error);
       setAnalysisResult(null);
       setAnalysisDetails(null);
     } finally {
-      if (worker) await worker.terminate();
       setIsLoading(false);
     }
   };
