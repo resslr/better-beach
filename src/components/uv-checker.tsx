@@ -102,7 +102,7 @@ function SunWithIndex({ uvIndex }: { uvIndex: number }) {
               strokeLinecap="round"
               strokeDasharray="4 4"
             />
-          )
+          ),
         )}
       </svg>
       {/* Sun circle with index */}
@@ -146,7 +146,7 @@ function DecorativeSun() {
               strokeWidth="4"
               strokeLinecap="round"
             />
-          )
+          ),
         )}
       </svg>
     </div>
@@ -173,7 +173,7 @@ export function UVCheckerPage() {
     try {
       // Fetch UV data from EPA API
       const response = await fetch(
-        `https://data.epa.gov/efservice/getEnvirofactsUVHOURLY/ZIP/${zipCode}/JSON`
+        `https://data.epa.gov/efservice/getEnvirofactsUVHOURLY/ZIP/${zipCode}/JSON`,
       );
 
       if (!response.ok) {
@@ -261,9 +261,7 @@ export function UVCheckerPage() {
           </Button>
         </form>
 
-        {error && (
-          <p className="mt-4 text-center text-red-500">{error}</p>
-        )}
+        {error && <p className="mt-4 text-center text-red-500">{error}</p>}
 
         {/* Results */}
         {uvData && riskInfo && (
