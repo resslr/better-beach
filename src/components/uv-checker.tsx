@@ -116,7 +116,7 @@ function SunWithIndex({ uvIndex }: { uvIndex: number }) {
 // Decorative sun for the header
 function DecorativeSun() {
   return (
-    <div className="absolute right-4 top-8 h-40 w-40 opacity-90 md:right-16 md:h-52 md:w-52 lg:right-24">
+    <div className="absolute left-1/2 top-16 h-40 w-40 opacity-90 md:left-1/2 md:top-20 md:h-48 md:w-48 lg:left-1/2 lg:top-24 lg:h-56 lg:w-56 -z-10 translate-x-96">
       <svg viewBox="0 0 100 100" className="h-full w-full text-orange-400">
         {/* Main circle */}
         <circle cx="50" cy="50" r="20" fill="currentColor" />
