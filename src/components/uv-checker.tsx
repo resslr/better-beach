@@ -66,6 +66,53 @@ const getUVRiskInfo = (uvIndex: number) => {
   }
 };
 
+const MONTHS = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+
+function parseEpaDateTime(dateTime: string): Date | null {
+  const match = dateTime.match(/^(\w+)\/(\d+)\/(\d+) (\d+) (AM|PM)$/);
+  if (!match) return null;
+
+  const [, monthAbbr, day, year, hour12Str, meridiem] = match;
+  const monthIndex = MONTHS.indexOf(monthAbbr);
+  if (monthIndex === -1) return null;
+
+  let hour = parseInt(hour12Str, 10) % 12;
+  if (meridiem === "PM") hour += 12;
+
+  return new Date(Number(year), monthIndex, Number(day), hour);
+}
+
+interface EpaUvEntry {
+  DATE_TIME: string;
+  UV_VALUE: number | string;
+}
+
+function findCurrentHourEntry(entries: EpaUvEntry[]): EpaUvEntry {
+  const now = Date.now();
+  return entries.reduce((closest, entry) => {
+    const entryTime = parseEpaDateTime(entry.DATE_TIME)?.getTime();
+    if (entryTime === undefined) return closest;
+    const closestTime = parseEpaDateTime(closest.DATE_TIME)?.getTime();
+    if (closestTime === undefined) return entry;
+    return Math.abs(entryTime - now) < Math.abs(closestTime - now)
+      ? entry
+      : closest;
+  }, entries[0]);
+}
+
 // Sun icon component with UV index
 function SunWithIndex({ uvIndex }: { uvIndex: number }) {
   return (
@@ -186,9 +233,8 @@ export function UVCheckerPage() {
         throw new Error("No UV data available for this location");
       }
 
-      // Get the current hour's UV index or the first available
-      const currentData = data[0];
-      const uvIndex = parseInt(currentData.UV_VALUE) || 0;
+      const currentData = findCurrentHourEntry(data);
+      const uvIndex = parseInt(String(currentData.UV_VALUE)) || 0;
       const riskInfo = getUVRiskInfo(uvIndex);
 
       setUvData({
