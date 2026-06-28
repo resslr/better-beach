@@ -7,9 +7,7 @@ WORKDIR /app
 
 COPY package.json pnpm-lock.yaml* .npmrc* ./
 
-RUN echo "onlyBuiltDependencies[]=sharp" >> .npmrc && \
-    echo "onlyBuiltDependencies[]=tesseract.js" >> .npmrc && \
-    echo "onlyBuiltDependencies[]=unrs-resolver" >> .npmrc
+ENV PNPM_ONLY_BUILT_DEPENDENCIES="sharp,tesseract.js,unrs-resolver"
 
 RUN pnpm install --frozen-lockfile
 
