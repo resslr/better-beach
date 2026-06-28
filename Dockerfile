@@ -6,6 +6,11 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 COPY package.json pnpm-lock.yaml* .npmrc* ./
+
+RUN echo "onlyBuiltDependencies[]=sharp" >> .npmrc && \
+    echo "onlyBuiltDependencies[]=tesseract.js" >> .npmrc && \
+    echo "onlyBuiltDependencies[]=unrs-resolver" >> .npmrc
+
 RUN pnpm install --frozen-lockfile
 
 # Build the app
