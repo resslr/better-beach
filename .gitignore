@@ -19,6 +19,11 @@ pnpm-lock.yaml
 /.next/
 /out/
 
+# opennext / cloudflare
+/.open-next/
+.wrangler/
+cloudflare-env.d.ts
+
 # production
 /build
 
