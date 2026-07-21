@@ -263,7 +263,7 @@ export function UVCheckerPage() {
   const riskInfo = uvData ? getUVRiskInfo(uvData.uvIndex) : null;
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <div className="relative min-h-dvh overflow-hidden">
       {/* Decorative sun */}
       <DecorativeSun />
 

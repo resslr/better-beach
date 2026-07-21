@@ -74,7 +74,7 @@ export default function RootLayout({
       </head>
       <body className={`${geistSans.className} antialiased`}>
         <ThemeProvider defaultTheme="system" storageKey="betterbeach-theme">
-          <div className="flex min-h-screen flex-col">
+          <div className="flex min-h-dvh flex-col">
             <header className="hidden md:block sticky top-0 z-40 w-full bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 md:border-b">
               <Navigation />
             </header>
