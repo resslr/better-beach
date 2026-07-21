@@ -1,4 +1,15 @@
+minimumReleaseAge: 10080
+minimumReleaseAgeExclude:
+  - '@cloudflare/*'
+  - wrangler
+  - miniflare
+  - workerd
+trustPolicy: no-downgrade
+trustPolicyIgnoreAfter: 43200
+
 allowBuilds:
+  esbuild: true
   sharp: true
   tesseract.js: true
   unrs-resolver: true
+  workerd: true
