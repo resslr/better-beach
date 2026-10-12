@@ -30,9 +30,9 @@ export const ocrVariants: Record<string, string[]> = {
     "horno salate",
   ],
   octinoxate: ["oclinoxate", "octinoxale", "oclinoxale", "octi noxate"],
-  octocrylene: ["oclocrylene", "octocylene", "oclo crylene", "octocrylene"],
-  avobenzone: ["avobenzone", "avo benzone", "avobenizone"],
-  oxybenzone: ["oxybenione", "oxy benzone", "oxybenzone"],
+  octocrylene: ["oclocrylene", "octocylene", "oclo crylene"],
+  avobenzone: ["avo benzone", "avobenizone"],
+  oxybenzone: ["oxybenione", "oxy benzone"],
   octisalate: ["octisalale", "octi salate", "oclisalate"],
   parabens: ["paradens", "para bens", "parahens"],
 };

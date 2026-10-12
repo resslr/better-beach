@@ -11,11 +11,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
-import {
-  harmfulMaterials,
-  bannedIngredients,
-  ocrVariants,
-} from "@/lib/harmful-materials";
+import { harmfulMaterials } from "@/lib/harmful-materials";
+import { analyzeOcrText } from "@/lib/ocr-analysis";
 
 type AnalysisStatus = "safe" | "harmful" | null;
 
@@ -33,8 +30,6 @@ export function ScanPage() {
   } | null>(null);
 
   const ocrWorkerRef = useRef<any>(null);
-
-  const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
   const getIngredientDbId = (ingredient: string): string | null => {
     const lowerIng = ingredient.toLowerCase();
@@ -65,125 +60,8 @@ export function ScanPage() {
     ).slice(0, 400);
   };
 
-  const matchesBannedIngredient = (token: string) => {
-    const lower = token.toLowerCase().replace(/[^a-z]/g, "");
-
-    // Check exact matches first
-    for (const ing of bannedIngredients) {
-      const pattern = new RegExp(
-        `\\b${escapeRegExp(ing).replace(/[\s-]+/g, "[\\s-]*")}\\b`,
-        "i",
-      );
-      if (pattern.test(token)) return true;
-    }
-
-    // Check OCR variants
-    for (const [ingredient, variants] of Object.entries(ocrVariants)) {
-      const cleanIngredient = ingredient.replace(/[^a-z]/g, "");
-      if (lower.includes(cleanIngredient)) return true;
-
-      for (const variant of variants) {
-        const cleanVariant = variant.replace(/[^a-z]/g, "");
-        if (lower.includes(cleanVariant)) return true;
-      }
-    }
-
-    return false;
-  };
-
-  const analyzeTextDetailed = (
-    text: string,
-  ): {
-    status: AnalysisStatus;
-    harmful: string[];
-    negated: string[];
-    claims: string[];
-  } => {
-    const normalized = text.toLowerCase();
-
-    const toPattern = (term: string) => {
-      const escaped = term
-        .replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
-        .replace(/[\s-]+/g, "[\\s-]*");
-      return new RegExp(`\\b${escaped}\\b`, "i");
-    };
-    const oxyAliases = [
-      "oxybenzone",
-      "benzophenone-3",
-      "benzophenone 3",
-      "bp-3",
-      "bp3",
-    ];
-
-    const freePhrases = (alias: string) => [
-      new RegExp(
-        `\\b${alias.replace(/[-\s]+/g, "[-\\s]*")}[-\\s]*free\\b`,
-        "i",
-      ),
-      new RegExp(
-        `\\bfree\\s+of\\s+${alias.replace(/[-\s]+/g, "[-\\s]*")}\\b`,
-        "i",
-      ),
-      new RegExp(`\\bno\\s+${alias.replace(/[-\s]+/g, "[-\\s]*")}\\b`, "i"),
-      new RegExp(
-        `\\bwithout\\s+${alias.replace(/[-\s]+/g, "[-\\s]*")}\\b`,
-        "i",
-      ),
-      new RegExp(`\\b0%\\s*${alias.replace(/[-\s]+/g, "[-\\s]*")}\\b`, "i"),
-      new RegExp(
-        `\\bdoes\\s+not\\s+contain\\s+${alias.replace(
-          /[-\s]+/g,
-          "[-\\s]*",
-        )}\\b`,
-        "i",
-      ),
-    ];
-
-    let oxyFree = false;
-    const claims: string[] = [];
-    const negated: string[] = [];
-
-    for (const alias of oxyAliases) {
-      for (const re of freePhrases(alias)) {
-        const match = normalized.match(re);
-        if (match) {
-          oxyFree = true;
-          claims.push(`${alias.replace(/bp[-\s]*3/i, "benzophenone-3")} free`);
-          break;
-        }
-      }
-      if (oxyFree) break;
-    }
-
-    const harmful: string[] = [];
-    const harmfulSet = new Set<string>();
-
-    for (const ing of bannedIngredients) {
-      const re = toPattern(ing);
-      if (re.test(normalized)) {
-        if (oxyAliases.some((a) => toPattern(a).test(ing))) {
-          if (oxyFree) {
-            negated.push("oxybenzone");
-            continue;
-          }
-        }
-        harmfulSet.add(ing);
-      }
-
-      if (ocrVariants[ing]) {
-        for (const variant of ocrVariants[ing]) {
-          const variantPattern = toPattern(variant);
-          if (variantPattern.test(normalized)) {
-            harmfulSet.add(ing);
-          }
-        }
-      }
-    }
-
-    harmful.push(...Array.from(harmfulSet));
-    const status: AnalysisStatus = harmful.length > 0 ? "harmful" : "safe";
-    return { status, harmful, negated, claims };
-  };
+  const matchesBannedIngredient = (token: string) =>
+    analyzeOcrText(token).status === "harmful";
 
   const updateSelectedFile = (file: File) => {
     setImageFile(file);
@@ -267,7 +145,7 @@ export function ScanPage() {
       } = await worker.recognize(imageFile);
 
       setOcrText(text);
-      const analysis = analyzeTextDetailed(text);
+      const analysis = analyzeOcrText(text);
       setAnalysisResult(analysis.status);
       setAnalysisDetails({
         harmful: analysis.harmful,
