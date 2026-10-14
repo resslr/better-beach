@@ -9,3 +9,29 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
+    # Mirror pnpm-workspace.yaml minimumReleaseAge (7 days) so bumps don't
+    # fail install; Cloudflare tooling is exempt there too.
+    cooldown:
+      default-days: 7
+      exclude:
+        - "@cloudflare/*"
+        - "wrangler"
+        - "miniflare"
+        - "workerd"
+    # Packages that must move in lockstep; separate PRs leave them mismatched.
+    groups:
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+      next:
+        patterns:
+          - "next"
+          - "eslint-config-next"
+      cloudflare:
+        patterns:
+          - "@cloudflare/*"
+          - "@opennextjs/cloudflare"
+          - "wrangler"
